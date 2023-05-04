@@ -1,22 +1,24 @@
 const express = require('express');
 const router = express.Router();
+const contacts = require('../models/contacts');
 
-const contactos=[
-    {id:1,
-    nombre: 'Jose Luis Manon',
-    correo:'manon@gmail.com',
-    telefono:'809-929-2993'
-},
-{
-    id:2,
-    nombre: 'Angel Martinez',
-    correo:'angel@gmail.com',
-    telefono:'809-923-2922'
-}
-];
+// const contactos=[
+//     {id:1,
+//     nombre: 'Jose Luis Manon',
+//     correo:'manon@gmail.com',
+//     telefono:'809-929-2993'
+// },
+// {
+//     id:2,
+//     nombre: 'Angel Martinez',
+//     correo:'angel@gmail.com',
+//     telefono:'809-923-2922'
+// }
+// ];
 
-router.get('/', (req, res)=>{
-    res.json(contactos)
+router.get('/', async (req, res)=>{
+    const contactos = await contacts.findAll();
+        res.json(contactos);
 });
 
 router.get('/:id', (req, res)=>{
